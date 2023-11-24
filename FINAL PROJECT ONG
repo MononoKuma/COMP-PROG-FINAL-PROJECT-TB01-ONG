@@ -1,0 +1,629 @@
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+
+using namespace std;
+
+int main() {
+	string pass, user, bus, name, departure, confirm, logout = "N", check = "Y";
+	bool i, e;
+	int destination,ttime, ctime, btime, bitime, desti, tseat, cseat, bseat, biseat, bal, change, chooses, seatnum = 0, tries = 1;
+	int tprice = 190, cprice = 800, bprice = 500, biprice = 760;
+	char menu;
+	
+	string tseats1[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string tseats2[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string cseats1[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string cseats2[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string bseats1[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string bseats2[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string biseats1[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	string biseats2[30] = {"Available","Available","Available","Available","Available","Available","Available","Available","Available","Available", "Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available","Available"};
+	
+	
+		do {
+				cout << "\n=========================================================\n" << endl;
+				cout << "\t\tWelcome to Bus Bus" << endl
+					<< "\n=========================================================\n" << endl
+					<< "View Destinations, Buses, Origin, Departure Time[V]" << endl
+					<< "Buy Ticket [B]" << endl
+					<< "Admin [A]" << endl;
+				cout << "What do you want to do? ";
+				cin >> menu;
+				
+				cout << "\n=========================================================\n" << endl;
+				
+				switch(menu) {
+				case 'v':
+				case 'V':
+					cout << "Destinations, Departure time, and ticket prices\n" << endl;
+					cout << "Espana -> Tagaytay City: 6:00 a.m. & 1:00 p.m.\n" << endl;
+					cout << setw(25) << "\tBus 1: 6:00 a.m. Price: P "<< tprice << endl;
+					cout << setw(25) << "\tBus 2: 3:00 p.m. Price: P "<< tprice << endl;
+					cout << "\n=========================================================\n" << endl;
+	 		
+					cout << "Espana -> Cebu City: 8:00 a.m. & 3:00 p.m.\n" << endl;
+					cout << setw(25) << "\tBus 1: 8:00 a.m. Price: P " << cprice << endl;
+					cout << setw(25) << "\tBus 2: 3:00 p.m. Price: P " << cprice << endl;
+					cout << "\n=========================================================\n" << endl;
+
+
+					cout << "Espana -> Baguio City: 5:00 a.m. & 4:00 p.m.\n" << endl;
+					cout << setw(25) << "\tBus 1: 5:00 a.m. Price: P " << bprice << endl;
+					cout << setw(25) << "\tBus 1: 4:00 p.m. Price: P " << bprice << endl;
+					cout << "\n=========================================================\n" << endl;
+
+					
+					cout << "Espana -> Biringan City: 12:00 n.n. & 12:00 m.n.\n" << endl;
+					cout << setw(25) << "\tBus 1: 12:00 n.n. Price: P " << biprice << endl;
+					cout << setw(25) << "\tBus 1: 12:00 m.n. Price: P " << biprice << endl;
+						 	
+					cout << "\n=========================================================\n" << endl;
+				
+					
+					break;
+				case 'b':
+				case 'B':
+				
+					cout << "Tagaytay City [1]" << endl
+						 << "Cebu City     [2]" << endl
+						 << "Bagio City    [3]" << endl
+						 << "Biringan City [4]" << endl
+						 << "Enter destination: ";
+					cin >> destination; 
+				
+			switch (destination){
+				case 1:
+					cout << "\n=========================================================\n" << endl;
+							cout << "6:00 a.m. [1]" << endl
+								 << "1:00 a.m. [2]" << endl
+								 << "Choose Departure time: ";
+							cin >> ttime;
+							
+							switch (ttime){
+								
+								case 1:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << tseats1[i] << " - P" << tprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> tseat;
+										if (tseats1[tseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= tprice){
+															
+															change = bal - tprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Tagaytay 6:00 a.m. \nSeat number: " << tseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															tseats1[tseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+										seatnum = 0;
+								break;
+								case 2:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << tseats1[i] << " - P" << tprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> tseat;
+										if (tseats2[tseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= tprice){
+															
+															change = bal - tprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Tagaytay 1:00 p.m. \nSeat number: " << tseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															tseats2[tseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+								break;
+								default:
+									cout << "Invalid Seat Number" << endl;
+							}
+							seatnum = 0;
+				break;
+				case 2:
+					cout << "\n=========================================================\n" << endl;
+							cout << "8:00 a.m. [1]" << endl
+								 << "3:00 a.m. [2]" << endl
+								 << "Choose Departure time: ";
+							cin >> ctime;
+							
+							switch (ctime){
+							case 1:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << cseats1[i] << " - P" << cprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> cseat;
+										if (cseats1[cseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= cprice){
+															
+															change = bal - cprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Cebu 8:00 a.m. \nSeat number: " << cseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															cseats1[cseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+										seatnum = 0;
+								break;
+								case 2:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << cseats2[i] << " - P" << cprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> cseat;
+										if (cseats2[cseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= cprice){
+															
+															change = bal - cprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Cebu 3:00 p.m. \nSeat number: " << tseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															tseats1[tseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+										seatnum = 0;
+								break;
+								default:
+									cout << "Invalid Seat Number" << endl;
+							}
+						seatnum = 0;
+					break;
+					case 3:
+						cout << "\n=========================================================\n" << endl;
+								cout << "5:00 a.m. [1]" << endl
+								     << "4:00 p.m. [2]" << endl
+								     << "Choose Departure time: ";
+							cin >> btime;
+							
+							switch (btime){
+								
+								case 1:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << bseats1[i] << " - P" << bprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> bseat;
+										if (bseats1[bseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= bprice){
+															
+															change = bal - bprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Baguio 5:00 a.m. \nSeat number: " << bseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															bseats1[bseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+										seatnum = 0;
+								break;
+								case 2:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << bseats2[i] << " - P" << bprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> bseat;
+										if (bseats2[bseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= bprice){
+															
+															change = bal - bprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Baguio 4:00 p.m. \nSeat number: " << bseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															tseats1[tseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+							break;
+								default:
+									cout << "Invalid Seat Number" << endl;
+						}
+						seatnum = 0;
+					break;
+					case 4: 
+					cout << "\n=========================================================\n" << endl;
+							cout << "12:00 n.n. [1]" << endl
+								 << "12:00 m.n. [2]" << endl
+								 << "Choose Departure time: ";
+							cin >> bitime;
+							
+							switch (bitime){
+								
+								case 1:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << biseats1[i] << " - P" << biprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> biseat;
+										if (biseats1[biseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= biprice){
+															
+															change = bal - biprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Biringan 12:00 n.n. \nSeat number: " << biseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															biseats1[biseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+										seatnum = 0;
+								break;
+								case 2:
+									cout << "Available seats:" << endl;
+										for (int i = 0; i < 30;) {  
+        									cout <<"seat " << seatnum << " " << biseats1[i] << " - P" << biprice << endl;
+									seatnum++;
+									i++;
+									} 
+									
+									cout << "\nPls Enter a seat number: ";
+									cin >> biseat;
+										if (biseats1[biseat] == "Available"){
+											cout << "Would you like to take this seat [Y/N]: ";
+											cin >> confirm;
+												if(confirm == "Y"){
+													cout << "\nEnter Name: ";
+													cin >> name;
+													
+													cout << "Enter payment amout: ";
+													cin >> bal;
+												
+														if (bal >= biprice){
+															
+															change = bal - biprice;
+															cout << "\n=========================================================\n" << endl;
+															cout << "\tReciept" << endl;
+															cout << "Biringan 12:00 m.n. \nSeat number: " << biseat << endl;
+															cout << "Payment: P " << bal << endl;
+															cout << "Change: P " << change << endl;
+															cout << "Thank you for purchasing " << name << endl; 
+															biseats2[biseat] = "Unavailable";
+															cout << "\n=========================================================\n" << endl;
+
+														} else {
+															
+															cout << "\n=========================================================\n" << endl;
+															cout << "Insufficient Amount!" << endl;
+															cout << "\n=========================================================\n" << endl;
+															
+														}
+													
+													seatnum = 0;
+												} else {
+													cout << "Edi dont" << endl;
+												}
+										} else {
+											cout <<"Invalid Choice" << endl;
+										}
+								break;
+								seatnum = 0;
+								default:
+									cout << "Invalid Seat Number" << endl;
+							}
+					}
+				break;
+				case 'a':
+				case 'A':
+					do {
+						cout << "\n=========================================================\n" << endl;
+						cout << "Enter Username: ";
+						cin >> user;
+						
+						cout << "Enter Password: ";
+						cin >> pass;
+						
+						cout << " \n=========================================================\n" << endl;
+						
+						if (user == "admin" && pass == "admin") {
+						do {
+							cout << "Change price [1]" << endl
+				 				 << "Logout [2]" << endl
+				 				 << "Close the system [3]" << endl
+				 				 << "What do you want to do?: ";
+							cin >> chooses;	  
+						
+							switch(chooses){
+								case 1:
+									cout << "Destination:" << endl
+										 << "Tagaytay City [1]" << endl
+										 << "Cebu City [2]" << endl
+										 << "Baguio City [3]" << endl
+										 << "Biringan City [4]" << endl;
+									cout<< "Select a destination to update price: ";
+									cin >> desti;
+									
+									switch(desti){
+										case 1:
+											cout << "update Tagaytay City ticket price: ";
+												cin >> tprice;
+											cout << "Price is updated" << endl;
+											
+										break;
+										
+										case 2:
+											cout << "update Cebu City ticket price: ";
+											cin >> cprice;
+											cout << "Price is updated" << endl;
+											
+										break;
+										
+										case 3:
+											cout << "update Baguio City ticket price: ";
+											cin >> bprice;
+											cout << "Price is updated" << endl;
+											 
+										break;
+										
+										case 4:
+											cout << "update Biringan City ticket price: ";
+											cin >> biprice;
+											cout << "Price is updated" << endl;
+											
+										break;
+										
+										default:
+											cout << "hello :) ";
+										} 
+								case 2:
+								cout << "Do you want to logout? [Y/N]: ";
+								cin >> logout;
+								
+								cout << "\n=========================================================\n";
+								
+								tries++;
+								tries++;
+								tries++;
+								
+								break;
+								case 3: 
+									
+									cout << "Do you want to close the system? if yes enter [E]xit: ";
+									cin >> check;
+									logout = "Y";
+									cout << "\n=========================================================\n";
+									
+									cout << "Thank you for using the system!!" << endl;
+									
+								tries++;
+								tries++;
+								tries++;
+								
+								break;
+								default:
+								cout << " " << endl;
+									
+							}
+							
+					} while(logout != "Y");
+						} else {
+							cout << "incorrect login information" << endl
+								 << "\n=========================================================\n" << endl;
+								tries++;
+						} 
+					} 
+					while (tries <= 3);
+					break;
+				default:
+					cout << " " << endl;
+				}
+			} 
+
+	while (check != "E");
+	return 0;	
+}
